@@ -1,186 +1,1251 @@
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Le Tien Dung</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --glass: rgba(255,255,255,.12);
-      --border: rgba(255,255,255,.25);
-      --accent: #ff7aa2;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
-      color:#fff;
-      overflow:hidden;
-      background:#000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PyHydra - Công cụ obfuscate Python mạnh mẽ và bảo mật. Bảo vệ source code Python với công nghệ tiên tiến, hỗ trợ Anti-Debug và Anti-Crack.">
+    <meta name="keywords" content="python obfuscator, code protection, pyhydra, python security, anti-debug, anti-crack, source code protection">
+    <meta name="author" content="Nguyễn Xuân Trịnh">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PyHydra - Advanced Python Code Obfuscator">
+    <meta property="og:description" content="Bảo vệ code Python của bạn với PyHydra - công cụ obfuscate mạnh mẽ nhất">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/nguyenxuantrinhnotpd/PyHydra/refs/heads/main/pyhydra.jpeg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PyHydra - Python Code Protection">
+    <meta name="twitter:description" content="Advanced Python obfuscation with anti-debug and anti-crack features">
+    
+    <title>PyHydra - Advanced Python Code Obfuscator | Bảo vệ Source Code Python</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="https://raw.githubusercontent.com/nguyenxuantrinhnotpd/PyHydra/refs/heads/main/pyhydra.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/nguyenxuantrinhnotpd/PyHydra/refs/heads/main/pyhydra.jpeg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="https://proxy.nguyenxuantrinh.id.vn/pyhydra.css">
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <style>
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-switcher {
+            display: flex;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .auth-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .auth-btn.login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+        
+        .auth-btn.login:hover {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .telegram-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .telegram-btn:hover {
+            background: rgba(0, 136, 204, 0.2);
+            border-color: rgba(0, 136, 204, 0.5);
+            color: #0088cc;
+            transform: translateY(-1px);
+        }
 
-    /* Background */
-    .bg{
-      position:fixed; inset:0;
-      background-image:url('https://i.imgur.com/xFKmfj1.gif');
-      background-size:120% auto;
-      background-position:center;
-      background-repeat:no-repeat;
-      filter:saturate(1.1) contrast(1.05);
-      transform:scale(1.05);
-      animation:bg-pan 30s linear infinite alternate;
-    }
-    @keyframes bg-pan{from{background-position:45% 50%}to{background-position:55% 50%}}
-    .bg::after{
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(1200px 600px at 50% 60%, rgba(0,0,0,.15), rgba(0,0,0,.55));
-    }
+        .hero-section {
+            text-align: center;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    canvas#sakura{position:fixed; inset:0; pointer-events:none}
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
 
-    .wrap{position:relative; z-index:2; height:100%; display:grid; place-items:center}
-    .card{
-      width:min(420px,92vw);
-      background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
-      backdrop-filter:blur(14px);
-      border:1px solid var(--border);
-      border-radius:24px;
-      padding:24px;
-      box-shadow:0 30px 80px rgba(0,0,0,.45);
-    }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
 
-    .profile{display:flex; flex-direction:column; gap:16px; align-items:center; text-align:center}
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
 
-    /* Avatar + Galaxy */
-    .avatar-wrap{
-      position:relative;
-      width:150px;
-      height:150px;
-      display:grid;
-      place-items:center;
-    }
-    .galaxy-ring{
-      position:absolute;
-      width:150px;
-      height:150px;
-      border-radius:50%;
-      background:conic-gradient(#ff7aa2,#7afcff,#a97aff,#ff7aa2);
-      filter:blur(8px);
-      opacity:.9;
-      animation:spin 6s linear infinite;
-    }
-    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
 
-    .avatar{
-      width:120px; height:120px; border-radius:50%;
-      background:url('https://sf-static.upanhlaylink.com/img/image_202601188d4b37361caaa46c96e2f7a9ec428ffc.jpg') center/cover no-repeat;
-      border:3px solid rgba(255,255,255,.7);
-      z-index:2;
-      box-shadow:0 10px 30px rgba(0,0,0,.4)
-    }
+        .btn-primary-large {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .name h1{margin:0; font-size:30px}
-    .name p{margin:0; opacity:.85}
+        .btn-secondary-large {
+            background: transparent;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            color: var(--text-primary);
+            padding: 13px 33px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .actions{margin-top:22px; display:grid; gap:14px}
-    .btn{
-      display:flex; justify-content:center; align-items:center;
-      padding:14px; border-radius:14px;
-      text-decoration:none; color:#fff;
-      background:rgba(0,0,0,.25);
-      border:1px solid var(--border);
-      transition:.25s;
-    }
-    .btn:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.4)}
+        .btn-primary-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
 
-    footer{
-      position:fixed; left:50%; bottom:14px;
-      transform:translateX(-50%);
-      font-size:14px; opacity:.9; z-index:3
-    }
+        .btn-secondary-large:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 1);
+            transform: translateY(-3px);
+        }
 
-    /* Click ripple */
-    .ripple{
-      position:fixed;
-      width:20px; height:20px;
-      border-radius:50%;
-      pointer-events:none;
-      background:radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,0));
-      transform:translate(-50%,-50%);
-      animation:ripple .6s ease-out forwards;
-      z-index:9999;
-    }
-    @keyframes ripple{from{opacity:1; transform:translate(-50%,-50%) scale(0)}to{opacity:0; transform:translate(-50%,-50%) scale(8)}}
-  </style>
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .demo-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .code-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .code-content {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #a8b2d1;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+
+        .code-content iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .testimonials-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .testimonial-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .author-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .footer-cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .code-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-cta-title {
+                font-size: 2rem;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+            }
+            
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+        /* Telegram Contact Button */
+        .telegram-contact {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0088cc 0%, #229ed9 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .telegram-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 136, 204, 0.4);
+            background: linear-gradient(135deg, #229ed9 0%, #0088cc 100%);
+            color: white;
+            text-decoration: none;
+        }
+
+        .telegram-contact:active {
+            transform: translateY(-1px);
+        }
+
+        .telegram-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            font-size: 16px;
+        }
+
+        .telegram-pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: rgba(0, 136, 204, 0.3);
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(1.05);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px;
+            }
+            
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .telegram-contact {
+                left: 10px;
+                top: 10px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .telegram-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .telegram-contact .telegram-text {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <canvas id="sakura"></canvas>
-
-  <div class="wrap">
-    <div class="card">
-      <div class="profile">
-        <div class="avatar-wrap">
-          <div class="galaxy-ring"></div>
-          <div class="avatar"></div>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="vi">
+                <span class="lang-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 640 480">
+                        <rect width="640" height="480" fill="#da251d"/>
+                        <polygon fill="#ff0" points="320,120 347,215 440,215 365,270 392,365 320,305 248,365 275,270 200,215 293,215"/>
+                    </svg>
+                </span>
+                <span>VI</span>
+            </button>
+            <button class="lang-btn" data-lang="en">
+                <span class="lang-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 7410 3900">
+                        <rect width="7410" height="3900" fill="#b22234"/>
+                        <g fill="#fff">
+                            <path d="M0 300h7410v300H0zm0 600h7410v300H0zm0 600h7410v300H0zm0 600h7410v300H0zm0 600h7410v300H0zm0 600h7410v300H0zm0 600h7410v300H0z"/>
+                        </g>
+                        <rect width="2964" height="2100" fill="#3c3b6e"/>
+                        <g fill="#fff">
+                            <g id="s">
+                                <polygon points="247,90 263,144 321,144 275,180 291,234 247,198 203,234 219,180 173,144 231,144"/>
+                            </g>
+                            <use xlink:href="#s" x="0" y="0"/>
+                            <use xlink:href="#s" x="247" y="180"/>
+                            <use xlink:href="#s" x="494" y="0"/>
+                            <use xlink:href="#s" x="741" y="180"/>
+                        </g>
+                    </svg>
+                </span>
+                <span>EN</span>
+            </button>
         </div>
-        <div class="name">
-          <h1>Le Tien Dung</h1>
-          <p>Nhận Tất Cả Các Dịch Vụ Mxh</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <a class="btn" href="https://www.facebook.com/dunglectema" target="_blank">Contact Facebook Me</a>
-        <a class="btn" href="https://t.me/Letiendung01" target="_blank">Contact Telegram Me</a>
-        <a class="btn" href="https://www.tiktok.com/@dungle.loveyou" target="_blank">Contact TikTok Me</a>
-        <a class="btn" href="https://zalo.me/0969411158" target="_blank">Contact Zalo Me</a>
-      </div>
+        
+        <div class="nav-divider"></div>
+        
+        <!-- Telegram Button -->
+        <a href="https://t.me/CalceIsMe" class="telegram-btn" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            <span data-key="telegram">Telegram</span>
+        </a>
+        
+        <div class="nav-divider"></div>
+        
+        <!-- Auth Buttons -->
+        <div class="auth-buttons">
+                            <a href="login.php" class="auth-btn login" data-key="login">Đăng nhập</a>
+                <a href="register.php" class="auth-btn" data-key="register">Đăng ký</a>
+                    </div>
     </div>
-  </div>
 
-  <footer id="clock"></footer>
+    <div class="bg-animation">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="floating-element">
+                <h1 class="hero-title" data-key="hero_title">PyHydra</h1>
+            </div>
+            <p class="hero-subtitle" data-key="hero_subtitle">Advanced Python Code Protection & Obfuscation</p>
+            <p class="hero-description" data-key="hero_description">
+                Bảo vệ source code Python của bạn với công nghệ obfuscation tiên tiến nhất. 
+                PyHydra cung cấp giải pháp bảo mật toàn diện với tính năng Anti-Debug, Anti-Crack 
+                và hiệu suất cao cho các dự án Python quan trọng.
+            </p>
+            <div class="cta-buttons">
+                                    <a href="login.php" class="btn-primary-large" data-key="cta_start" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>                        <span>Bắt đầu ngay</span>
+                    </a>
+                    <a href="#features" class="btn-secondary-large" data-key="cta_learn" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>                        <span>Tìm hiểu thêm</span>
+                    </a>
+                            </div>
+        </section>
 
-  <script>
-    /* Clock */
-    const clockEl=document.getElementById('clock');
-    setInterval(()=>{
-      const d=new Date();
-      const p=n=>String(n).padStart(2,'0');
-      clockEl.textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())} — ${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()}`;
-    },1000);
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                    <h3 class="feature-title" data-key="feature1_title">Anti-Debug Protection</h3>
+                    <p class="feature-description" data-key="feature1_desc">
+                        Ngăn chặn hoàn toàn việc debug và phân tích code. Bảo vệ khỏi các công cụ 
+                        reverse engineering phổ biến như debugger, decompiler và static analysis tools.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#51cf66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                    <h3 class="feature-title" data-key="feature2_title">Anti-Crack Technology</h3>
+                    <p class="feature-description" data-key="feature2_desc">
+                        Công nghệ chống crack tiên tiến, bảo vệ khỏi HTTP debugging tools như HTTP-TOOLKIT. 
+                        Mã hóa requests và responses để đảm bảo tính bảo mật tối đa.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd43b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                    <h3 class="feature-title" data-key="feature3_title">High Performance</h3>
+                    <p class="feature-description" data-key="feature3_desc">
+                        Tối ưu hóa hiệu suất với minimal overhead. Code được obfuscated vẫn duy trì 
+                        tốc độ thực thi gần như nguyên bản, phù hợp cho production environment.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><circle cx="12" cy="16" r="0.5"/></svg></span>
+                    <h3 class="feature-title" data-key="feature4_title">Multi-Layer Security</h3>
+                    <p class="feature-description" data-key="feature4_desc">
+                        Bảo mật đa lớp với string encryption, control flow obfuscation, và bytecode 
+                        manipulation. Mỗi lớp bảo vệ tạo thành một rào cản vững chắc.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4z"/><path d="M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4"/></svg></span>
+                    <h3 class="feature-title" data-key="feature5_title">Python Version Support</h3>
+                    <p class="feature-description" data-key="feature5_desc">
+                        Hỗ trợ đa phiên bản Python từ 3.9 đến 3.14. Tương thích với các thư viện 
+                        phổ biến và frameworks như Django, Flask, FastAPI.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#51cf66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                    <h3 class="feature-title" data-key="feature6_title">Easy Integration</h3>
+                    <p class="feature-description" data-key="feature6_desc">
+                        Giao diện web thân thiện, dễ sử dụng. Không cần cài đặt phức tạp, chỉ cần 
+                        upload file và nhận kết quả được bảo vệ trong vài giây.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    /* Click effect */
-    document.addEventListener('click',e=>{
-      const r=document.createElement('div');
-      r.className='ripple';
-      r.style.left=e.clientX+'px';
-      r.style.top=e.clientY+'px';
-      document.body.appendChild(r);
-      setTimeout(()=>r.remove(),600);
-    });
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <h2 class="demo-title" data-key="stats_title">PyHydra trong con số</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-key="stat1_number">10,000+</span>
+                    <div class="stat-label" data-key="stat1_label">Files được bảo vệ</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-key="stat2_number">99.9%</span>
+                    <div class="stat-label" data-key="stat2_label">Tỷ lệ bảo mật thành công</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-key="stat3_number">5ms</span>
+                    <div class="stat-label" data-key="stat3_label">Thời gian xử lý trung bình</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-key="stat4_number">24/7</span>
+                    <div class="stat-label" data-key="stat4_label">Hỗ trợ liên tục</div>
+                </div>
+            </div>
+        </section>
 
-    /* Sakura */
-    const c=document.getElementById('sakura'),ctx=c.getContext('2d');
-    let W,H,petals=[]; const MAX=80;
-    function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
-    addEventListener('resize',resize);resize();
-    const r=(a,b)=>Math.random()*(b-a)+a;
-    for(let i=0;i<MAX;i++)petals.push({x:r(0,W),y:r(-H,0),s:r(.4,1),r:r(1.5,3.5),a:r(0,Math.PI*2)});
-    (function draw(){
-      ctx.clearRect(0,0,W,H);
-      ctx.fillStyle='rgba(255,190,210,.9)';
-      petals.forEach(p=>{
-        p.y+=p.s; p.x+=Math.sin(p.a)*.5; p.a+=.01;
-        if(p.y>H)p.y=-10;
-        ctx.beginPath(); ctx.ellipse(p.x,p.y,p.r*1.2,p.r,p.a,0,Math.PI*2); ctx.fill();
-      });
-      requestAnimationFrame(draw);
-    })();
-  </script>
+        <!-- Demo Section -->
+        <section class="demo-section">
+            <h2 class="demo-title" data-key="demo_title">So sánh Before & After</h2>
+            <div class="code-comparison">
+                <div class="code-block">
+                    <div class="code-header" style="display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>                        <span data-key="demo_before">Code gốc (Before)</span>
+                    </div>
+                    <div class="code-content">
+<pre>print("Hello World")</pre>
+                    </div>
+                </div>
+                <div class="code-block">
+                    <div class="code-header" style="display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#51cf66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>                        <span data-key="demo_after">Code được bảo vệ (After)</span>
+                    </div>
+                    <div class="code-content">
+                        <img src="https://raw.githubusercontent.com/nguyenxuantrinhnotpd/PyHydra/refs/heads/main/demo-obfuscated.png" 
+                             alt="Obfuscated Python Code" 
+                             style="width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                    </div>
+                </div>
+                <div class="code-block">
+                    <div class="code-header" style="display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>                        <span data-key="demo">Cách Sử Dụng</span>
+                    </div>
+                    <div class="code-content">
+                        <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/ty2XckMdnZA" 
+                            title="PyHydra" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <h2 class="testimonials-title" data-key="testimonials_title">Khách hàng nói gì về PyHydra</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content" data-key="testimonial1_content">
+                        "PyHydra đã giúp tôi bảo vệ hoàn toàn source code của dự án fintech. 
+                        Tính năng Anti-Debug thực sự hiệu quả, không ai có thể reverse engineering được code của tôi."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <div class="author-name" data-key="author1_name">Anh Tuấn</div>
+                            <div class="author-role" data-key="author1_role">Senior Python Developer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content" data-key="testimonial2_content">
+                        "Công cụ tuyệt vời! Giao diện đơn giản nhưng hiệu quả cao. 
+                        Code sau khi obfuscate vẫn chạy mượt mà như ban đầu, performance không bị ảnh hưởng."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <div class="author-name" data-key="author2_name">Mai Linh</div>
+                            <div class="author-role" data-key="author2_role">Tech Lead</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content" data-key="testimonial3_content">
+                        "PyHydra là giải pháp bảo mật hoàn hảo cho startup của chúng tôi. 
+                        Tính năng Anti-Crack đặc biệt hữu ích khi chúng tôi cần bảo vệ API endpoints."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">D</div>
+                        <div class="author-info">
+                            <div class="author-name" data-key="author3_name">Đức Minh</div>
+                            <div class="author-role" data-key="author3_role">CTO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer CTA -->
+        <section class="footer-cta">
+            <h2 class="footer-cta-title" data-key="footer_title">Sẵn sàng bảo vệ code của bạn?</h2>
+            <p class="footer-cta-subtitle" data-key="footer_subtitle">
+                Tham gia cùng hàng nghìn developer đã tin tưởng PyHydra để bảo vệ source code Python
+            </p>
+            <a href="login.php" class="footer-cta-button" data-key="footer_button" style="display: inline-flex; align-items: center; gap: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>                <span>Bắt đầu ngay</span>
+            </a>
+        </section>
+    </div>
+
+    <script>
+        // Translation data
+        const translations = {
+            vi: {
+                hero_title: "PyHydra",
+                hero_subtitle: "Advanced Python Code Protection & Obfuscation",
+                hero_description: "Bảo vệ source code Python của bạn với công nghệ obfuscation tiên tiến nhất. PyHydra cung cấp giải pháp bảo mật toàn diện với tính năng Anti-Debug, Anti-Crack và hiệu suất cao cho các dự án Python quan trọng.",
+                cta_start: "Bắt đầu ngay",
+                cta_learn: "Tìm hiểu thêm",
+                feature1_title: "Anti-Debug Protection",
+                feature1_desc: "Ngăn chặn hoàn toàn việc debug và phân tích code. Bảo vệ khỏi các công cụ reverse engineering phổ biến như debugger, decompiler và static analysis tools.",
+                feature2_title: "Anti-Crack Technology", 
+                feature2_desc: "Công nghệ chống crack tiên tiến, bảo vệ khỏi HTTP debugging tools như HTTP-TOOLKIT. Mã hóa requests và responses để đảm bảo tính bảo mật tối đa.",
+                feature3_title: "High Performance",
+                feature3_desc: "Tối ưu hóa hiệu suất với minimal overhead. Code được obfuscated vẫn duy trì tốc độ thực thi gần như nguyên bản, phù hợp cho production environment.",
+                feature4_title: "Multi-Layer Security",
+                feature4_desc: "Bảo mật đa lớp với string encryption, control flow obfuscation, và bytecode manipulation. Mỗi lớp bảo vệ tạo thành một rào cản vững chắc.",
+                feature5_title: "Python Version Support",
+                feature5_desc: "Hỗ trợ đa phiên bản Python từ 3.9 đến 3.14. Tương thích với các thư viện phổ biến và frameworks như Django, Flask, FastAPI.",
+                feature6_title: "Easy Integration",
+                feature6_desc: "Giao diện web thân thiện, dễ sử dụng. Không cần cài đặt phức tạp, chỉ cần upload file và nhận kết quả được bảo vệ trong vài giây.",
+                stats_title: "PyHydra trong con số",
+                stat1_number: "10,000+",
+                stat1_label: "Files được bảo vệ",
+                stat2_number: "99.9%",
+                stat2_label: "Tỷ lệ bảo mật thành công",
+                stat3_number: "5ms",
+                stat3_label: "Thời gian xử lý trung bình",
+                stat4_number: "24/7",
+                stat4_label: "Hỗ trợ liên tục",
+                demo_title: "So sánh Before & After",
+                demo_before: "Code gốc (Before)",
+                demo_after: "Code được bảo vệ (After)",
+                demo: "Cách Sử Dụng",
+                testimonials_title: "Khách hàng nói gì về PyHydra",
+                testimonial1_content: "PyHydra đã giúp tôi bảo vệ hoàn toàn source code của dự án fintech. Tính năng Anti-Debug thực sự hiệu quả, không ai có thể reverse engineering được code của tôi.",
+                author1_name: "Anh Tuấn",
+                author1_role: "Senior Python Developer",
+                testimonial2_content: "Công cụ tuyệt vời! Giao diện đơn giản nhưng hiệu quả cao. Code sau khi obfuscate vẫn chạy mượt mà như ban đầu, performance không bị ảnh hưởng.",
+                author2_name: "Mai Linh", 
+                author2_role: "Tech Lead",
+                testimonial3_content: "PyHydra là giải pháp bảo mật hoàn hảo cho startup của chúng tôi. Tính năng Anti-Crack đặc biệt hữu ích khi chúng tôi cần bảo vệ API endpoints.",
+                author3_name: "Đức Minh",
+                author3_role: "CTO",
+                footer_title: "Sẵn sàng bảo vệ code của bạn?",
+                footer_subtitle: "Tham gia cùng hàng nghìn developer đã tin tưởng PyHydra để bảo vệ source code Python",
+                footer_button: "Bắt đầu ngay",
+                contact_telegram: "Contact Telegram",
+                login: "Đăng nhập",
+                register: "Đăng ký"
+            },
+            en: {
+                hero_title: "PyHydra",
+                hero_subtitle: "Advanced Python Code Protection & Obfuscation",
+                hero_description: "Protect your Python source code with the most advanced obfuscation technology. PyHydra provides comprehensive security solutions with Anti-Debug, Anti-Crack features and high performance for critical Python projects.",
+                cta_start: "Get Started",
+                cta_learn: "Learn More",
+                feature1_title: "Anti-Debug Protection",
+                feature1_desc: "Completely prevent debugging and code analysis. Protect against popular reverse engineering tools like debuggers, decompilers and static analysis tools.",
+                feature2_title: "Anti-Crack Technology",
+                feature2_desc: "Advanced anti-crack technology, protecting against HTTP debugging tools like HTTP-TOOLKIT. Encrypt requests and responses to ensure maximum security.",
+                feature3_title: "High Performance", 
+                feature3_desc: "Performance optimization with minimal overhead. Obfuscated code still maintains near-original execution speed, suitable for production environment.",
+                feature4_title: "Multi-Layer Security",
+                feature4_desc: "Multi-layer security with string encryption, control flow obfuscation, and bytecode manipulation. Each protection layer forms a solid barrier.",
+                feature5_title: "Python Version Support",
+                feature5_desc: "Support multiple Python versions from 3.9 to 3.14. Compatible with popular libraries and frameworks like Django, Flask, FastAPI.",
+                feature6_title: "Easy Integration",
+                feature6_desc: "User-friendly web interface, easy to use. No complex installation required, just upload file and receive protected results in seconds.",
+                stats_title: "PyHydra in Numbers",
+                stat1_number: "10,000+",
+                stat1_label: "Files Protected",
+                stat2_number: "99.9%",
+                stat2_label: "Security Success Rate",
+                stat3_number: "5ms",
+                stat3_label: "Average Processing Time",
+                stat4_number: "24/7",
+                stat4_label: "Continuous Support",
+                demo_title: "Before & After Comparison",
+                demo_before: "Original Code (Before)",
+                demo_after: "Protected Code (After)",
+                demo: "Usage",
+                testimonials_title: "What Customers Say About PyHydra",
+                testimonial1_content: "PyHydra helped me completely protect the source code of my fintech project. The Anti-Debug feature is really effective, no one can reverse engineer my code.",
+                author1_name: "Anh Tuan",
+                author1_role: "Senior Python Developer",
+                testimonial2_content: "Excellent tool! Simple interface but highly effective. Code after obfuscation still runs smoothly as before, performance is not affected.",
+                author2_name: "Mai Linh",
+                author2_role: "Tech Lead",
+                testimonial3_content: "PyHydra is the perfect security solution for our startup. The Anti-Crack feature is especially useful when we need to protect API endpoints.",
+                author3_name: "Duc Minh",
+                author3_role: "CTO",
+                footer_title: "Ready to protect your code?",
+                footer_subtitle: "Join thousands of developers who trust PyHydra to protect Python source code",
+                footer_button: "Start Now",
+                contact_telegram: "Contact Telegram",
+                login: "Login",
+                register: "Register"
+            }
+        };
+
+        // Current language
+        let currentLang = localStorage.getItem('pyhydra_language') || 'vi';
+
+        // Language switching functionality
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('pyhydra_language', lang);
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update meta tags
+            updateMetaTags(lang);
+        }
+
+        // Update meta tags based on language
+        function updateMetaTags(lang) {
+            const metaDesc = document.querySelector('meta[name="description"]');
+            const title = document.querySelector('title');
+            
+            if (lang === 'en') {
+                metaDesc.content = "PyHydra - Advanced Python Code Obfuscator and Protection Tool. Secure your Python source code with advanced technology, Anti-Debug and Anti-Crack features.";
+                title.textContent = "PyHydra - Advanced Python Code Obfuscator | Python Source Code Protection";
+            } else {
+                metaDesc.content = "PyHydra - Công cụ obfuscate Python mạnh mẽ và bảo mật. Bảo vệ source code Python với công nghệ tiên tiến, hỗ trợ Anti-Debug và Anti-Crack.";
+                title.textContent = "PyHydra - Advanced Python Code Obfuscator | Bảo vệ Source Code Python";
+            }
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage(currentLang);
+            
+            // Add event listeners to language buttons
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe feature cards and other elements
+            document.querySelectorAll('.feature-card, .testimonial-card, .stat-item').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add hover effects to feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animate stats numbers on scroll
+            const statsSection = document.querySelector('.stats-section');
+            let statsAnimated = false;
+
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        animateStats();
+                        statsAnimated = true;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (statsSection) {
+                statsObserver.observe(statsSection);
+            }
+
+            function animateStats() {
+                document.querySelectorAll('.stat-number').forEach(stat => {
+                    const text = stat.textContent;
+                    const isPercentage = text.includes('%');
+                    const hasPlus = text.includes('+');
+                    const isTime = text.includes('ms');
+                    const isSupport = text.includes('/');
+                    
+                    if (isPercentage) {
+                        animateNumber(stat, 0, 99.9, 2000, '%');
+                    } else if (hasPlus) {
+                        animateNumber(stat, 0, 10000, 2000, '+');
+                    } else if (isTime) {
+                        animateNumber(stat, 0, 5, 1500, 'ms');
+                    } else if (isSupport) {
+                        stat.style.opacity = '0';
+                        setTimeout(() => {
+                            stat.style.opacity = '1';
+                            stat.style.transform = 'scale(1.1)';
+                            setTimeout(() => {
+                                stat.style.transform = 'scale(1)';
+                            }, 200);
+                        }, 1000);
+                    }
+                });
+            }
+
+            function animateNumber(element, start, end, duration, suffix = '') {
+                const startTime = performance.now();
+                
+                function update(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    const current = start + (end - start) * easeOutQuart(progress);
+                    
+                    if (suffix === '%') {
+                        element.textContent = current.toFixed(1) + suffix;
+                    } else if (suffix === '+') {
+                        element.textContent = Math.floor(current).toLocaleString() + suffix;
+                    } else if (suffix === 'ms') {
+                        element.textContent = Math.floor(current) + suffix;
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                }
+                
+                requestAnimationFrame(update);
+            }
+
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 4);
+            }
+
+            console.log('PyHydra Landing Page initialized successfully');
+        });
+
+        // Add CSS animations for scroll effects
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PyHydra",
+        "description": "Advanced Python Code Obfuscator and Protection Tool",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "inLanguage": ["vi", "en"],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Lê Tiến Dũng"
+        },
+        "datePublished": "2024",
+        "softwareVersion": "1.0",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150"
+        }
+    }
+    </script>
 </body>
 </html>
