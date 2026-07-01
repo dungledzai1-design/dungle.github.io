@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zalo IMEI Cookie - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Aurora Background -->
+        <div class="aurora-bg">
+            <div class="aurora-blob blob1"></div>
+            <div class="aurora-blob blob2"></div>
+            <div class="aurora-blob blob3"></div>
+            <div class="aurora-blob blob4"></div>
+        </div>
+
+        <!-- Header với menu 3 gạch -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h2>📱 Zalo IMEI Tool</h2>
+            </div>
+            <div class="header-right">
+                <button id="menuToggle" class="menu-btn">☰</button>
+            </div>
+        </header>
+
+        <!-- Dropdown Menu -->
+        <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+            <a href="#" id="viewAdminInfo">👤 Thông tin Admin</a>
+            <a href="#" id="viewDashboard">📊 Dashboard</a>
+            <a href="#" id="logoutBtn">🚪 Đăng xuất</a>
+        </div>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- 3 nút trạng thái -->
+            <div class="status-buttons">
+                <button class="status-btn" id="statusWaiting">
+                    <span class="status-dot waiting"></span>
+                    Chờ quét QR
+                </button>
+                <button class="status-btn" id="statusScanned">
+                    <span class="status-dot scanned"></span>
+                    Đã quét QR
+                </button>
+                <button class="status-btn" id="statusConfirmed">
+                    <span class="status-dot confirmed"></span>
+                    Đã xác nhận
+                </button>
+            </div>
+
+            <!-- Nút Start -->
+            <button id="startBtn" class="start-btn">▶ Bắt đầu</button>
+
+            <!-- QR Code Container -->
+            <div id="qrContainer" class="qr-container" style="display: none;">
+                <img id="qrImage" src="" alt="QR Code Zalo">
+                <p class="qr-hint">Quét mã QR bằng ứng dụng Zalo</p>
+            </div>
+
+            <!-- Kết quả IMEI & Cookie -->
+            <div id="resultContainer" class="result-container" style="display: none;">
+                <h3>📋 Kết quả</h3>
+                
+                <div class="result-section">
+                    <label>IMEI:</label>
+                    <div class="result-box">
+                        <span id="imeiResult">Đang tải...</span>
+                        <button class="copy-btn" data-target="imeiResult">📋 Copy</button>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <label>Cookie (Python):</label>
+                    <div class="result-box">
+                        <textarea id="cookiePythonResult" readonly></textarea>
+                        <button class="copy-btn" data-target="cookiePythonResult">📋 Copy</button>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <label>Cookie (JS):</label>
+                    <div class="result-box">
+                        <textarea id="cookieJsResult" readonly></textarea>
+                        <button class="copy-btn" data-target="cookieJsResult">📋 Copy</button>
+                    </div>
+                </div>
+
+                <button id="downloadBtn" class="download-btn">📥 Download .txt</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Admin Info -->
+    <div id="adminModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3>👤 Thông tin Admin</h3>
+            <div id="adminInfo">
+                <p><strong>Tên:</strong> <span id="adminName">Admin</span></p>
+                <p><strong>Email:</strong> <span id="adminEmail">admin@example.com</span></p>
+                <p><strong>Vai trò:</strong> <span id="adminRole">Super Admin</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
